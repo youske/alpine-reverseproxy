@@ -1,0 +1,21 @@
+version: "2"
+services:
+
+  revproxyimage:
+    container_name: revproxy
+    build: build
+    ulimits:
+      nofile:
+        soft: 20000
+        hard: 40000
+      nproc: 65535
+    ports:
+      - "80:80"
+      - "8088:8088"
+    networks:
+      - omni
+
+networks:
+  omni:
+    external:
+      name: omni-network
